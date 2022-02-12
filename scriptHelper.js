@@ -25,19 +25,20 @@ function addDestinationInfo(
 }
 
 function validateInput(testInput) {
-    if (testInput === "") {
-        alert("Empty");
-    } else if (isNaN(testInput) == true) {
-        alert("Not a Number"); 
-    } else if  (isNaN(testInput) === false) {
-        alert("Is a Number")
-    }
+  if (testInput === '') {
+    alert('Empty');
+  } else if (isNaN(testInput) == true) {
+    alert('Not a Number');
+  } else if (isNaN(testInput) === false) {
+    alert('Is a Number');
+  }
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   window.addEventListener('load', (event) => {
     let form = document.querySelector('form');
     form.addEventListener('submit', (event) => {
+      validateInput(pilot, copilot, fuelLevel, cargoLevel);
       if (
         pilot.value === '' ||
         copilot.value === '' ||
@@ -54,14 +55,19 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 async function myFetch() {
   let planetsReturned;
 
-  planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {});
+  planetsReturned = await fetch(
+    'https://handlers.education.launchcode.org/static/planets.json'
+  ).then(function (response) {
+      response.json().then( function(json) {
+          response = planetsReturned;
+      });
+  });
 
   return planetsReturned;
 }
-myFetch();
-function pickPlanet(planet) {
- planet = Math.floor(Math.random(planetsReturned)*10);
 
+function pickPlanet(planet) {
+  planet = Math.floor(Math.random(planetsReturned) * 10);
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;

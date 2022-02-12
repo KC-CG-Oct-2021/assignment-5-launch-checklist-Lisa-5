@@ -1,9 +1,17 @@
 // Write your helper functions here!
 require('isomorphic-fetch');
 
-function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-   // Here is the HTML formatting for our mission target div.
-   /*
+function addDestinationInfo(
+  document,
+  name,
+  diameter,
+  star,
+  distance,
+  moons,
+  imageUrl
+) {
+  // Here is the HTML formatting for our mission target div.
+  /*
                 <h2>Mission Destination</h2>
                 <ol>
                     <li>Name: </li>
@@ -18,40 +26,45 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 function validateInput(testInput) {
 
-   
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   window.addEventListener("load", event => {
-   let form = document.querySelector("form");
-  form.addEventListener("submit", event => {
-    let pilot = document.querySelector("input[name=pilotName]");
-    let copilot = document.querySelector("input[name=copilotName]");
-    let fuelLevel = document.querySelector("input[name=fuelLevel]");
-    let cargoLevel = document.querySelector("input[name=cargoMass]");
+  window.addEventListener('load', (event) => {
+    let form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+      let pilot = document.querySelector('input[name=pilotName]');
+      let copilot = document.querySelector('input[name=copilotName]');
+      let fuelLevel = document.querySelector('input[name=fuelLevel]');
+      let cargoLevel = document.querySelector('input[name=cargoMass]');
 
-    if (pilot.value === "" || copilot.value === "" || fuelLevel.value ==="" || cargoLevel.value === "") {
-      alert("All fields are required!");
+      if (
+        pilot.value === '' ||
+        copilot.value === '' ||
+        fuelLevel.value === '' ||
+        cargoLevel.value === ''
+      ) {
+        alert('All fields are required!');
         event.preventDefault();
-     }
+      }
+    });
   });
-});
 }
 
 async function myFetch() {
-    let planetsReturned;
+  let planetsReturned;
 
-    planetsReturned = await fetch().then( function(response) {
-        });
+  planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {});
 
-    return planetsReturned;
+  return planetsReturned;
 }
+myFetch();
+function pickPlanet(planet) {
+ planet = Math.floor(Math.random(planetsReturned)*10);
 
-function pickPlanet(planets) {
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;
 module.exports.formSubmission = formSubmission;
-module.exports.pickPlanet = pickPlanet; 
+module.exports.pickPlanet = pickPlanet;
 module.exports.myFetch = myFetch;

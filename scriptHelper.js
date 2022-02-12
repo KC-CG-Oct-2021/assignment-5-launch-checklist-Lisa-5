@@ -38,12 +38,14 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   window.addEventListener('load', (event) => {
     let form = document.querySelector('form');
     form.addEventListener('submit', (event) => {
-      validateInput(pilot, copilot, fuelLevel, cargoLevel);
+      for (let i = 0; i < list.length; i++){
+          validateInput(list[i]);
+      }
       if (
-        pilot.value === '' ||
-        copilot.value === '' ||
-        fuelLevel.value === '' ||
-        cargoLevel.value === ''
+        pilot=== '' ||
+        copilot === '' ||
+        fuelLevel === '' ||
+        cargoLevel === ''
       ) {
         alert('All fields are required!');
         event.preventDefault();
@@ -58,9 +60,9 @@ async function myFetch() {
   planetsReturned = await fetch(
     'https://handlers.education.launchcode.org/static/planets.json'
   ).then(function (response) {
-      response.json().then( function(json) {
-          response = planetsReturned;
-      });
+    response.json().then(function (json) {
+      console.log(json);
+    });
   });
 
   return planetsReturned;

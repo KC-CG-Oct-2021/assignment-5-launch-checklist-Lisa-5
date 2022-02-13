@@ -10,18 +10,30 @@ function addDestinationInfo(
   moons,
   imageUrl
 ) {
+  let destination = this.document.getElementById("missionTarget");
+  destination.innerHTML = `
+  <h2>Mission Destination</h2>
+            <ol>
+                <li>Name: ${name}</li>
+                <li>Diameter: ${diameter}</li>
+                <li>Star: ${star}</li>
+                <li>Distance from Earth: ${distance}</li>
+                <li>Number of Moons: ${moons}</li>
+            </ol>
+            <img src="${imageUrl}">`;
+  
   // Here is the HTML formatting for our mission target div.
-  /*
-                <h2>Mission Destination</h2>
-                <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
-                </ol>
-                <img src="">
-   */
+  // /*
+  //               <h2>Mission Destination</h2>
+  //               <ol>
+  //                   <li>Name: </li>
+  //                   <li>Diameter: </li>
+  //                   <li>Star: ${star}</li>
+  //                   <li>Distance from Earth: </li>
+  //                   <li>Number of Moons: </li>
+  //               </ol>
+  //               <img src="">
+  //  */
 }
 
 function validateInput(testInput) {
@@ -97,16 +109,15 @@ async function myFetch() {
   planetsReturned = await fetch(
     'https://handlers.education.launchcode.org/static/planets.json'
   ).then(function (response) {
-    response.json().then(function (json) {
-      console.log(json);
-    });
+    return response.json();   
   });
 
   return planetsReturned;
 }
 
 function pickPlanet(planet) {
-  planet = Math.floor(Math.random(planetsReturned) * 10);
+  let index = Math.floor(Math.random() * planet.length);
+  return planet[index];
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;

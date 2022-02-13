@@ -27,9 +27,9 @@ function addDestinationInfo(
 function validateInput(testInput) {
   if (testInput === '') {
     alert('Empty');
-  } else if (isNaN(testInput) == true) {
+  } else if (isNaN(testInput) {
     alert('Not a Number');
-  } else if (isNaN(testInput) === false) {
+  } else if (!isNaN(testInput) {
     alert('Is a Number');
   }
 }

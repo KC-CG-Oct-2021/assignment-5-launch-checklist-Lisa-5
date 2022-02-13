@@ -50,13 +50,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         alert('All fields are required!');
       }  else if (
         pilotValidation === 'Is a Number' ||
-        copilotValidation === 'Is a Number' ||
+        copilotValidation === 'Is a Number'
+      ) {  
+          alert("Enter a valid name.");
+      } else if (
         fuelLevelValidation === 'Not a Number' ||
         cargoLevelValidation === 'Not a Number'
-      ) {  
-          alert("Enter Valid Input");
-    
-      } 
+      ) {
+        alert("Enter a valid number.")
+      }
 }
 
 async function myFetch() {

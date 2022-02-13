@@ -26,32 +26,37 @@ function addDestinationInfo(
 
 function validateInput(testInput) {
   if (testInput === '') {
-    alert('Empty');
-  } else if (isNaN(testInput) {
-    alert('Not a Number');
-  } else if (!isNaN(testInput) {
-    alert('Is a Number');
+    return 'Empty';
+  } else if (isNaN(testInput)) {
+    return 'Not a Number';
+  } else if (!isNaN(testInput)) {
+    return 'Is a Number';
   }
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-  window.addEventListener('load', (event) => {
-    let form = document.querySelector('form');
-    form.addEventListener('submit', (event) => {
-      for (let i = 0; i < list.length; i++){
-          validateInput(list[i]);
-      }
+
+      let pilotValidation = validateInput(pilot);
+      let copilotValidation = validateInput(copilot);
+      let fuelLevelValidation = validateInput(fuelLevel);
+      let cargoLevelValidation = validateInput(cargoLevel);
+      
       if (
-        pilot=== '' ||
-        copilot === '' ||
-        fuelLevel === '' ||
-        cargoLevel === ''
+        pilotValidation === 'Empty' ||
+        copilotValidation === 'Empty' ||
+        fuelLevelValidation === 'Empty' ||
+        cargoLevelValidation === 'Empty'
       ) {
         alert('All fields are required!');
-        event.preventDefault();
-      }
-    });
-  });
+      }  else if (
+        pilotValidation === 'Is a Number' ||
+        copilotValidation === 'Is a Number' ||
+        fuelLevelValidation === 'Not a Number' ||
+        cargoLevelValidation === 'Not a Number'
+      ) {  
+          alert("Enter Valid Input");
+    
+      } 
 }
 
 async function myFetch() {
